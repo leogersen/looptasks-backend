@@ -50,11 +50,20 @@ public class Task {
         this.done = done;
     }
 
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
     public Task() {
 
     }
 
     public Task(String description, LocalDate whenToDo, boolean done) {
+        super();
         this.description = description;
         this.whenToDo = whenToDo;
         this.done = done;

@@ -9,8 +9,7 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(Integer id, String username, String password, String displayName) {
-        this.id = id;
+    public AppUser(String username, String password, String displayName) {
         this.username = username;
         this.password = password;
         this.displayName = displayName;
