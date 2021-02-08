@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.context.event.*;
 import org.springframework.stereotype.*;
 
+import java.time.LocalDate;
+
 @Component
 public class InsertTestData {
 
@@ -24,6 +26,15 @@ public class InsertTestData {
         //TODO: Security
         AppUser appUser = new AppUser("john", "123", "John Canvas");
         appUserRepository.save(appUser);
+
+        LocalDate baseDate = LocalDate.parse("2025-02-01");
+
+        for (int i = 1; i <= 10; i++) {
+            Task task = new Task("Tarefa #" + i, baseDate.plusDays(i), false);
+            task.setAppUser(appUser);
+            taskRepository.save(task);
+
+        }
 
 
     }

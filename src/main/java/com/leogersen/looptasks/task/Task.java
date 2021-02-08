@@ -18,7 +18,7 @@ public class Task {
 
     private boolean done = false;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "app_user_id")
     private AppUser appUser;
 
