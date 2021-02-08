@@ -1,6 +1,7 @@
 package com.leogersen.looptasks.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "app_user")
@@ -19,10 +20,13 @@ public class AppUser {
     @GeneratedValue
     private Integer id;
 
+    @NotEmpty(message = "O nome de usuário é obrigatório")
     private String username;
 
+    @NotEmpty(message = "O nome de exibição é obrigatório")
     private String password;
 
+    @NotEmpty(message = "O nome de exibição é obrigatório")
     private String displayName;
 
     public Integer getId() {
