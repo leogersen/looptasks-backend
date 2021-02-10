@@ -23,7 +23,7 @@ public class AppUser {
     @NotEmpty(message = "O nome de usuário é obrigatório")
     private String username;
 
-    @NotEmpty(message = "O nome de exibição é obrigatório")
+    @NotEmpty(message = "A senha é obrigatório")
     private String password;
 
     @NotEmpty(message = "O nome de exibição é obrigatório")
