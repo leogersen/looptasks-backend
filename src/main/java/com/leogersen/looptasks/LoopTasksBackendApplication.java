@@ -1,6 +1,8 @@
 package com.leogersen.looptasks;
 
 import com.leogersen.looptasks.task.Task;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -14,8 +16,14 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 @SpringBootApplication
 public class LoopTasksBackendApplication implements RepositoryRestConfigurer {
 
+	private static final Logger logger = LoggerFactory.getLogger(LoopTasksBackendApplication.class);
+
 	public static void main(String[] args) {
 		SpringApplication.run(LoopTasksBackendApplication.class, args);
+		logger.info("LoopTasks in action!");
+
+
+
 	}
 
 
@@ -34,6 +42,9 @@ public class LoopTasksBackendApplication implements RepositoryRestConfigurer {
 		Validator validator = validatior();
 		vrel.addValidator("beforeCreate", validator);
 		vrel.addValidator("beforeSave", validator);
+
+
+		logger.info("Configure validator... OK!");
 
 
 	}
