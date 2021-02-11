@@ -4,6 +4,8 @@ import com.leogersen.looptasks.domain.*;
 import com.leogersen.looptasks.task.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.context.event.*;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.*;
 
 import java.time.LocalDate;
@@ -23,8 +25,8 @@ public class InsertTestData {
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        //TODO: Security
-        AppUser appUser = new AppUser("john", "123", "John Canvas");
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        AppUser appUser = new AppUser("john", encoder.encode("123"), "John Canvas");
         appUserRepository.save(appUser);
 
         LocalDate baseDate = LocalDate.parse("2025-02-01");
