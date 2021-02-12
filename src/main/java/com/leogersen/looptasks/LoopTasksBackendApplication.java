@@ -22,16 +22,12 @@ public class LoopTasksBackendApplication implements RepositoryRestConfigurer {
 		SpringApplication.run(LoopTasksBackendApplication.class, args);
 		logger.info("LoopTasks in action!");
 
-
-
 	}
 
-
 	@Override
-	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
+	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry corsRegistry) {
 		config.exposeIdsFor(Task.class);
-		config.getCorsRegistry()
-				.addMapping("/**")
+				corsRegistry.addMapping("/**")
 				.allowedOrigins("*")
 				.allowedMethods("GET", "POST", "PUT", "DELETE");
 
@@ -40,13 +36,13 @@ public class LoopTasksBackendApplication implements RepositoryRestConfigurer {
 	}
 
 	@Bean
-	public Validator validatior() {
+	public Validator validator() {
 		return new LocalValidatorFactoryBean();
 	}
 
 	@Override
 	public void configureValidatingRepositoryEventListener(ValidatingRepositoryEventListener vrel) {
-		Validator validator = validatior();
+		Validator validator = validator();
 		vrel.addValidator("beforeCreate", validator);
 		vrel.addValidator("beforeSave", validator);
 
