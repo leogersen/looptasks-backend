@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.time.*;
 
 @Entity
+@EntityListeners(TaskListener.class)
 public class Task {
 
     @Id
