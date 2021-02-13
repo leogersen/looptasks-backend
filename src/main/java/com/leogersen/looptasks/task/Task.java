@@ -1,5 +1,6 @@
 package com.leogersen.looptasks.task;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.leogersen.looptasks.domain.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -29,7 +30,8 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "app_user_id")
-    //@NotNull(message = "O usuário da tarefa é obrigatório")
+    @JsonIgnore
+    @NotNull(message = "O usuário da tarefa é obrigatório")
     private AppUser appUser;
 
     public Integer getId() {
