@@ -1,6 +1,8 @@
 package com.leogersen.looptasks.infrastructure.web.security;
 
 import io.jsonwebtoken.Jwts;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -15,6 +17,7 @@ import java.io.IOException;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
+    private static final Logger logger = LoggerFactory.getLogger(JWTAuthorizationFilter.class);
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
@@ -30,7 +33,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         if (token != null && token.startsWith(SecurityConstants.TOKEN_PREFIX)) {
             UsernamePasswordAuthenticationToken authentication = getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-
+            logger.info("Success Token Authentication");
         }
 
         chain.doFilter(request, response);

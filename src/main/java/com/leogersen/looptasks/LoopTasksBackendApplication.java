@@ -17,6 +17,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @SpringBootApplication
+@EnableWebSecurity
 public class LoopTasksBackendApplication implements RepositoryRestConfigurer {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoopTasksBackendApplication.class);
@@ -28,11 +29,13 @@ public class LoopTasksBackendApplication implements RepositoryRestConfigurer {
 	}
 
 	@Override
-	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry corsRegistry) {
+	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 		config.exposeIdsFor(Task.class);
-		corsRegistry.addMapping("/**")
+		config.getCorsRegistry()
+				.addMapping("/**")
 				.allowedOrigins("*")
-				.allowedMethods("GET", "POST", "PUT", "DELETE");
+				.allowedMethods("GET", "POST", "PUT", "DELETE")
+				.exposedHeaders(SecurityConstants.AUTHORIZATION_HEADER);
 
 		logger.info("Repository CORS setup... OK!");
 
