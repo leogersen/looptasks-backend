@@ -31,7 +31,7 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "app_user_id")
     @JsonIgnore
-    @NotNull(message = "O usuário da tarefa é obrigatório")
+    //@NotNull(message = "O usuário da tarefa é obrigatório")
     private AppUser appUser;
 
     public Integer getId() {
